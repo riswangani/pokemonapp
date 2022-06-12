@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "142930907205",
+    "project_id": "challenge8-cb551",
+    "storage_bucket": "challenge8-cb551.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142930907205:android:8bcac63d7e9f7f9ee3932c",
+        "android_client_info": {
+          "package_name": "com.pokemonapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142930907205-evcrdl4od133bsvqfqo8i3rbutpm32sl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pokemonapp",
+            "certificate_hash": "ebbf867dc237e239ad369bb3433a0d5360cad7ab"
+          }
+        },
+        {
+          "client_id": "142930907205-4lk2jb7oafb8nmr3f2kr06sv4cn4oc5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBngF2IaPRNOKxh8JwuZTmlx7LQFmhHYZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142930907205-4lk2jb7oafb8nmr3f2kr06sv4cn4oc5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
