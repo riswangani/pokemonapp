@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {COLORS} from '../Styles/Color';
+import {FONTS} from '../Styles/Font';
 import {pokeball} from '../icons';
 
 const PokemonCard = props => {
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   nameCard: {
+    fontFamily: FONTS.title,
     fontSize: 14,
     color: COLORS.blackProgress,
     fontWeight: 'bold',

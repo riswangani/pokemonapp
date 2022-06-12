@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import {COLORS} from '../Styles/Color';
+import {FONTS} from '../Styles/Font';
 import {arrowBack} from '../icons';
 
 const Header = props => {
@@ -20,7 +21,9 @@ const Header = props => {
     } else if (props.home) {
       return (
         <View>
-          <Text style={{color: COLORS.white}}>Home</Text>
+          <Text style={{color: COLORS.white, fontFamily: FONTS.title}}>
+            Home
+          </Text>
         </View>
       );
     }
@@ -28,7 +31,13 @@ const Header = props => {
 
   const renderMidHead = () => {
     return (
-      <Text style={{fontWeight: 'bold', fontSize: 16, color: COLORS.white}}>
+      <Text
+        style={{
+          fontFamily: FONTS.extraBold,
+          fontWeight: 'bold',
+          fontSize: 16,
+          color: COLORS.white,
+        }}>
         {props.pageName}
       </Text>
     );
@@ -43,13 +52,17 @@ const Header = props => {
           style={
             props.disableCatch ? styles.DissablebuttonCatch : styles.buttonCatch
           }>
-          <Text style={{color: COLORS.white}}>Catch</Text>
+          <Text style={{fontFamily: FONTS.title, color: COLORS.white}}>
+            Catch
+          </Text>
         </TouchableOpacity>
       );
     } else if (props.pokeBag) {
       return (
         <TouchableOpacity onPress={() => props.rightAction()}>
-          <Text style={{color: COLORS.white}}>Go To PokeBag</Text>
+          <Text style={{color: COLORS.white, fontFamily: FONTS.title}}>
+            PokeBag
+          </Text>
         </TouchableOpacity>
       );
     }
@@ -58,10 +71,11 @@ const Header = props => {
   return (
     <View
       style={{
-        padding: 10,
+        paddingVertical: 15,
+        paddingHorizontal: 50,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        backgroundColor: COLORS.orangeQonstanta,
+        backgroundColor: COLORS.theme,
       }}>
       {renderLeftHead()}
       {renderMidHead()}
@@ -72,4 +86,21 @@ const Header = props => {
 
 export default Header;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  buttonCatch: {
+    width: 80,
+    height: 35,
+    backgroundColor: COLORS.orange,
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  DissablebuttonCatch: {
+    width: 80,
+    height: 35,
+    backgroundColor: COLORS.grayContact,
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

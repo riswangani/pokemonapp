@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import PokemonCard from '../../components/PokemonCard';
 import {COLORS} from '../../Styles/Color';
+import {FONTS} from '../../Styles/Font';
 import {useQuery} from 'react-query';
 import Header from '../../components/Header';
 
@@ -31,12 +32,13 @@ const Dashboard = props => {
   );
 
   const onHandleNext = () => {
-    setNextpage(nextPage + 10);
+    setNextpage(nextPage + 20);
     setCurrentPage(currentPage + 1);
   };
 
   const onHandlePrevious = () => {
-    setNextpage(nextPage - 10), setCurrentPage(currentPage - 1);
+    setNextpage(nextPage - 20);
+    setCurrentPage(currentPage - 1);
   };
 
   const Footer = () => {
@@ -54,8 +56,7 @@ const Dashboard = props => {
             width: '45%',
             height: 50,
             borderRadius: 10,
-            borderColor: COLORS.orangeQonstanta,
-            backgroundColor: COLORS.orangeQonstanta,
+            backgroundColor: COLORS.button,
             justifyContent: 'center',
             alignItems: 'center',
           }}>
@@ -71,8 +72,7 @@ const Dashboard = props => {
             width: '45%',
             height: 50,
             borderRadius: 10,
-            borderColor: COLORS.blueQonstanta,
-            backgroundColor: COLORS.blueQonstanta,
+            backgroundColor: COLORS.trackingDelivered,
             justifyContent: 'center',
             alignItems: 'center',
           }}>
@@ -96,9 +96,9 @@ const Dashboard = props => {
           <PokemonCard name={item.name} item={item} navigation={navigation} />
         )}
         columnWrapperStyle={{
-          margin: 5,
+          margin: 8,
         }}
-        ListFooterComponent={Footer}
+        ListHeaderComponent={Footer}
         listKey={(item, index) => `_key${index.toString()}`}
       />
     );
@@ -112,8 +112,15 @@ const Dashboard = props => {
         pokeBag
         rightAction={() => navigation.navigate('PokeBag')}
       />
-      <View style={{margin: 10}}>
-        <Text style={{fontSize: 24, color: 'black'}}>Pokedex</Text>
+      <View style={{alignItems: 'center'}}>
+        <Text
+          style={{
+            fontSize: 24,
+            color: COLORS.orange,
+            fontFamily: FONTS.extraBold,
+          }}>
+          Pokedex
+        </Text>
       </View>
 
       {isError ? (

@@ -6,16 +6,17 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   FlatList,
-  ScrollView,
   Animated,
   Easing,
   Alert,
 } from 'react-native';
+import {ScrollView} from 'react-native-virtualized-view';
 import {COLORS} from '../../Styles/Color';
 import Header from '../../components/Header';
 import {useQuery} from 'react-query';
 import CatchPokemon from '../../components/CatchPokemon';
 import database from '@react-native-firebase/database';
+import {FONTS} from '../../Styles/Font';
 
 const VirtualizedScrollView = props => {
   return (
@@ -104,7 +105,10 @@ const PokemonDetail = props => {
         }}
         renderItem={({item, index}) => (
           <View>
-            <Text>{item.move.name}, </Text>
+            <Text
+              style={{color: COLORS.blackProgress, fontFamily: FONTS.Regular}}>
+              {item.move.name},{' '}
+            </Text>
           </View>
         )}
         listKey={(item, index) => `_key${index.toString()}`}
@@ -121,7 +125,12 @@ const PokemonDetail = props => {
         columnWrapperStyle={{
           margin: 5,
         }}
-        renderItem={({item, index}) => <Text>{item.type.name}, </Text>}
+        renderItem={({item, index}) => (
+          <Text
+            style={{color: COLORS.blackProgress, fontFamily: FONTS.Regular}}>
+            {item.type.name},{' '}
+          </Text>
+        )}
         listKey={(item, index) => `_key${index.toString()}`}
       />
     );
@@ -136,7 +145,12 @@ const PokemonDetail = props => {
         columnWrapperStyle={{
           margin: 5,
         }}
-        renderItem={({item, index}) => <Text>{item.ability.name}, </Text>}
+        renderItem={({item, index}) => (
+          <Text
+            style={{color: COLORS.blackProgress, fontFamily: FONTS.Regular}}>
+            {item.ability.name},{' '}
+          </Text>
+        )}
         listKey={(item, index) => `_key${index.toString()}`}
       />
     );
@@ -152,7 +166,7 @@ const PokemonDetail = props => {
   });
 
   return (
-    <VirtualizedScrollView>
+    <ScrollView>
       <View style={styles.container}>
         <Header
           back
@@ -167,51 +181,62 @@ const PokemonDetail = props => {
         ) : (
           <>
             <View style={{alignItems: 'center', margin: 10}}>
-              <Animated.Image
-                style={{
-                  width: 200,
-                  height: 200,
-                  resizeMode: 'contain',
-                  borderRadius: 8,
-                  transform: [{rotate: spinImage}],
-                }}
-                source={{uri: data?.sprites?.other?.home?.front_default}}
-              />
-              <Text
-                style={{
-                  fontSize: 24,
-                  color: COLORS.blackProgress,
-                  fontWeight: 'bold',
-                  marginTop: 10,
-                }}>
-                {data?.name}
-              </Text>
-              <TouchableOpacity onPress={() => savePokemon()}>
+              <TouchableOpacity onPress={spinPokemon}>
+                <Animated.Image
+                  style={{
+                    width: 200,
+                    height: 200,
+                    resizeMode: 'contain',
+                    borderRadius: 8,
+                    transform: [{rotate: spinImage}],
+                  }}
+                  source={{uri: data?.sprites?.other?.home?.front_default}}
+                />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={spinPokemon}>
                 <Text
                   style={{
-                    color: COLORS.orangeQonstanta,
+                    fontSize: 24,
+                    color: COLORS.blackProgress,
                     fontWeight: 'bold',
-                    fontSize: 16,
-                    textDecorationLine: 'underline',
                     marginTop: 10,
                   }}>
-                  Profile
+                  {data?.name}
                 </Text>
               </TouchableOpacity>
               <View style={{flexDirection: 'row', margin: 10}}>
                 <View style={{flexDirection: 'column', flex: 1}}>
-                  <Text>Height : {data?.height} </Text>
-                  <Text>Weight : {data?.weight}</Text>
-                  <Text>Species : {data?.species?.name}</Text>
+                  <Text
+                    style={{
+                      color: COLORS.blackProgress,
+                      fontFamily: FONTS.Regular,
+                    }}>
+                    Height : {data?.height}{' '}
+                  </Text>
+                  <Text
+                    style={{
+                      color: COLORS.blackProgress,
+                      fontFamily: FONTS.Regular,
+                    }}>
+                    Weight : {data?.weight}
+                  </Text>
+                  <Text
+                    style={{
+                      color: COLORS.blackProgress,
+                      fontFamily: FONTS.Regular,
+                    }}>
+                    Species : {data?.species?.name}
+                  </Text>
                 </View>
               </View>
             </View>
             <View style={{margin: 10}}>
               <Text
                 style={{
+                  fontFamily: FONTS.SemiBold,
                   fontSize: 25,
-                  fontWeight: 'bold',
-                  color: COLORS.blackProgress,
+                  color: COLORS.blueMetronic,
                 }}>
                 Type
               </Text>
@@ -219,8 +244,8 @@ const PokemonDetail = props => {
               <Text
                 style={{
                   fontSize: 25,
-                  fontWeight: 'bold',
-                  color: COLORS.blackProgress,
+                  fontFamily: FONTS.SemiBold,
+                  color: COLORS.blueMetronic,
                 }}>
                 Ability
               </Text>
@@ -228,14 +253,20 @@ const PokemonDetail = props => {
               <Text
                 style={{
                   fontSize: 25,
-                  fontWeight: 'bold',
-                  color: COLORS.blackProgress,
+                  fontFamily: FONTS.SemiBold,
+                  color: COLORS.blueMetronic,
                 }}>
                 Moves
               </Text>
               {toggle === false ? (
                 <TouchableOpacity onPress={() => setToogle(true)}>
-                  <Text>Lihat semua moves </Text>
+                  <Text
+                    style={{
+                      color: COLORS.blackProgress,
+                      fontFamily: FONTS.Regular,
+                    }}>
+                    Lihat semua moves{' '}
+                  </Text>
                 </TouchableOpacity>
               ) : (
                 renderMoves()
@@ -250,7 +281,7 @@ const PokemonDetail = props => {
           onCatchPokemon={savePokemon}
         />
       </View>
-    </VirtualizedScrollView>
+    </ScrollView>
   );
 };
 export default PokemonDetail;

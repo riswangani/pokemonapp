@@ -46,9 +46,8 @@ const CatchPokemon = ({modalVisible, onOpenModal, onCatchPokemon}) => {
             style={{
               width: 100,
               height: 40,
-              backgroundColor: COLORS.orangeQonstanta,
+              backgroundColor: COLORS.trackingDelivered,
               borderRadius: 8,
-              borderColor: COLORS.orangeQonstanta,
               alignItems: 'center',
               justifyContent: 'center',
             }}>
